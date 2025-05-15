@@ -16,7 +16,7 @@ app.use(cors({
 app.use(router)
 app.use(routerTask)
 
-const start = async () => {
+const start = async () => {dsasda
   try {
       await database.sync();
       console.log('Banco lincou');
