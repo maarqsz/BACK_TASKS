@@ -8,37 +8,45 @@ import cors from 'cors'
 const app = express()
 const PORT = process.env.PORT || 3001
 
-// Middleware
+// Middleware CORS
 app.use(cors({
   origin: [
     'http://localhost:5173',
     'https://front-tasks-xli6.vercel.app'
   ],
-  
   credentials: true,
 }));
+
+// Respondendo OPTIONS para todas as rotas
+app.options('*', cors({
+  origin: [
+    'http://localhost:5173',
+    'https://front-tasks-xli6.vercel.app'
+  ],
+  credentials: true,
+}));
+
 app.use(express.json())
+
 app.use(router)
 app.use(routerTask)
 
 const start = async () => {
   try {
-      await database.sync();
-      console.log('Banco lincou');
+    await database.sync();
+    console.log('Banco lincou');
 
-      app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Servidor rodando em http://localhost:${PORT}`)
-      })
-        } catch (error) {
-      console.error("não conecto ao banco:", error);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Servidor rodando em http://localhost:${PORT}`)
+    })
+  } catch (error) {
+    console.error("não conecto ao banco:", error);
   }
 }
 console.log(PORT);
 
-
 start()
 
 app.get('/', (req, res) => {    
-      
   res.send('Aoba')
 })
