@@ -10,9 +10,13 @@ const PORT = process.env.PORT || 3001
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://front-tasks-sigma.vercel.app'
+  ],
   credentials: true,
-}));app.use(express.json())
+}));
+app.use(express.json())
 app.use(router)
 app.use(routerTask)
 
