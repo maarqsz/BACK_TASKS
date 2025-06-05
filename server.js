@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3001
 app.use(cors({
   origin: [
     'http://localhost:5173',
-    'https://front-tasks-sigma.vercel.app'
+    'front-tasks-xli6.vercel.app'
   ],
   credentials: true,
 }));
